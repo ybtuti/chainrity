@@ -45,9 +45,8 @@ contract Chainrity is AutomationCompatibleInterface {
         bool isRecurring
     );
 
-    constructor(address _priceFeedAddress, uint256 _minimumDonation) {
+    constructor(address _priceFeedAddress) {
         priceFeedAddress = _priceFeedAddress;
-        minimumDonation = _minimumDonation;
         nextDonationId = 1;
     }
 
@@ -154,4 +153,7 @@ contract Chainrity is AutomationCompatibleInterface {
     // function setInterval(uint256 _interval) public onlyOwner {
     //     interval = _interval;
     // }
+    function getPriceFeed() external view returns (AggregatorV3Interface) {
+        return AggregatorV3Interface(priceFeedAddress);
+    }
 }
